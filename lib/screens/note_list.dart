@@ -4,6 +4,7 @@ import 'package:flutter_app/models/note.dart';
 import 'package:flutter_app/utils/database_helper.dart';
 import 'package:flutter_app/screens/note_detail.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NoteList extends StatefulWidget {
   @override
@@ -40,21 +41,28 @@ class NoteListState extends State<NoteList> {
       itemBuilder: (BuildContext context, int position) {
         return Card(
           color: Colors.white,
-          elevation: 2.0,
+          elevation: 10.0,
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor:
-                  getPriorityColor(this.noteList[position].priority),
-              child: getPriorityIcon(this.noteList[position].priority),
+              backgroundColor: Colors.white,
+              backgroundImage: AssetImage('assets/arrow.png'),
             ),
             title: Text(
               this.noteList[position].title,
-              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+              style: GoogleFonts.robotoSlab(
+                textStyle: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-//            subtitle: Text(this.noteList[position].date),
+            subtitle: Text(
+              this.noteList[position].quantity,
+              style: TextStyle(fontSize: 15.0, color: Colors.black),
+            ),
             trailing: Text(
               this.noteList[position].description,
-              style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
             ),
             onTap: () {
               debugPrint("ListTile Tapped");

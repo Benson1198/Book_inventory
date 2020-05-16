@@ -17,8 +17,6 @@ class NoteDetail extends StatefulWidget {
 }
 
 class NoteDetailState extends State<NoteDetail> {
-  static var _priorities = ['High', 'Low'];
-
   DatabaseHelper helper = DatabaseHelper();
 
   String appBarTitle;
@@ -106,7 +104,7 @@ class NoteDetailState extends State<NoteDetail> {
                       updateDescription();
                     },
                     decoration: InputDecoration(
-                        labelText: 'Description',
+                        labelText: 'Standard',
                         labelStyle: textStyle,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0))),
@@ -184,31 +182,8 @@ class NoteDetailState extends State<NoteDetail> {
   }
 
   // Convert the String priority in the form of integer before saving it to Database
-  void updatePriorityAsInt(String value) {
-    switch (value) {
-      case 'High':
-        note.priority = 1;
-        break;
-      case 'Low':
-        note.priority = 2;
-        break;
-    }
-  }
 
   // Convert int priority to String priority and display it to user in DropDown
-  String getPriorityAsString(int value) {
-    String priority;
-    switch (value) {
-      case 1:
-        priority = _priorities[0]; // 'High'
-        break;
-      case 2:
-        priority = _priorities[1]; // 'Low'
-        break;
-    }
-    return priority;
-  }
-
   // Update the title of Note object
   void updateTitle() {
     note.title = titleController.text;
