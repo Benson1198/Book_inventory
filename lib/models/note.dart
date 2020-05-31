@@ -3,11 +3,13 @@ class Note {
   String _title;
   String _description;
   String _quantity;
+  String _price;
   String _date;
 
-  Note(this._title, this._date, this._description, this._quantity);
+  Note(this._title, this._date, this._description, this._quantity, this._price);
 
-  Note.withId(this._title, this._date, this._description, this._quantity);
+  Note.withId(
+      this._title, this._date, this._description, this._quantity, this._price);
 
   int get id => _id;
 
@@ -16,6 +18,8 @@ class Note {
   String get description => _description;
 
   String get quantity => _quantity;
+
+  String get price => _price;
 
   String get date => _date;
 
@@ -37,6 +41,12 @@ class Note {
     }
   }
 
+  set price(String newPrice) {
+    if (newPrice.length <= 255) {
+      this._price = newPrice;
+    }
+  }
+
   set date(String newDate) {
     this._date = newDate;
   }
@@ -50,6 +60,7 @@ class Note {
     map['title'] = _title;
     map['description'] = _description;
     map['quantity'] = _quantity;
+    map['price'] = _price;
     map['date'] = _date;
 
     return map;
@@ -61,6 +72,7 @@ class Note {
     this._title = map['title'];
     this._description = map['description'];
     this._quantity = map['quantity'];
+    this._price = map['price'];
     this._date = map['date'];
   }
 }

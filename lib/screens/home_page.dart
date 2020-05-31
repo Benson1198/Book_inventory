@@ -76,7 +76,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ReusableCard(
                       onPress: () {
-                        navigateToDetail(Note('', '', '', ''), 'Add Note');
+                        navigateToDetail(
+                            Note('', '', 'Class ', '', '₹ '), 'Add Detail');
                       },
                       colour: Color(0xFF2B2929),
                       cardChild: Padding(

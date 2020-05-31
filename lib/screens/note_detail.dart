@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/note.dart';
 import 'package:flutter_app/utils/database_helper.dart';
@@ -25,6 +24,7 @@ class NoteDetailState extends State<NoteDetail> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
 
   NoteDetailState(this.note, this.appBarTitle);
 
@@ -35,10 +35,10 @@ class NoteDetailState extends State<NoteDetail> {
     titleController.text = note.title;
     descriptionController.text = note.description;
     quantityController.text = note.quantity;
+    priceController.text = note.price;
 
     return WillPopScope(
         onWillPop: () {
-          // Write some code to control things, when user press Back navigation button in device navigationBar
           moveToLastScreen();
         },
         child: Scaffold(
@@ -73,26 +73,6 @@ class NoteDetailState extends State<NoteDetail> {
                   ),
                 ),
 
-//								Second Element
-
-//                ListTile(
-//                  title: DropdownButton(
-//                      items: _priorities.map((String dropDownStringItem) {
-//                        return DropdownMenuItem<String>(
-//                          value: dropDownStringItem,
-//                          child: Text(dropDownStringItem),
-//                        );
-//                      }).toList(),
-//                      style: textStyle,
-//                      value: getPriorityAsString(note.priority),
-//                      onChanged: (valueSelectedByUser) {
-//                        setState(() {
-//                          debugPrint('User selected $valueSelectedByUser');
-//                          updatePriorityAsInt(valueSelectedByUser);
-//                        });
-//                      }),
-//                ),
-
                 // Third Element
                 Padding(
                   padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
@@ -122,6 +102,23 @@ class NoteDetailState extends State<NoteDetail> {
                     },
                     decoration: InputDecoration(
                         labelText: 'Quantity',
+                        labelStyle: textStyle,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0))),
+                  ),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                  child: TextField(
+                    controller: priceController,
+                    style: textStyle,
+                    onChanged: (value) {
+                      debugPrint('Something changed in Price Text Field');
+                      updatePrice();
+                    },
+                    decoration: InputDecoration(
+                        labelText: 'Price',
                         labelStyle: textStyle,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0))),
@@ -196,6 +193,10 @@ class NoteDetailState extends State<NoteDetail> {
 
   void updateQuantity() {
     note.quantity = quantityController.text;
+  }
+
+  void updatePrice() {
+    note.price = priceController.text;
   }
 
   // Save data to database

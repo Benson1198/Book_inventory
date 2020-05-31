@@ -27,15 +27,13 @@ class NoteListState extends State<NoteList> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notes'),
+        title: Text('Books'),
       ),
       body: getNoteListView(),
     );
   }
 
   ListView getNoteListView() {
-    TextStyle titleStyle = Theme.of(context).textTheme.subhead;
-
     return ListView.builder(
       itemCount: count,
       itemBuilder: (BuildContext context, int position) {
@@ -57,12 +55,12 @@ class NoteListState extends State<NoteList> {
               ),
             ),
             subtitle: Text(
-              this.noteList[position].quantity,
+              'Quantity: ${this.noteList[position].quantity}',
               style: TextStyle(fontSize: 15.0, color: Colors.black),
             ),
             trailing: Text(
               this.noteList[position].description,
-              style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold),
             ),
             onTap: () {
               debugPrint("ListTile Tapped");
@@ -104,18 +102,18 @@ class NoteListState extends State<NoteList> {
     }
   }
 
-  void _delete(BuildContext context, Note note) async {
-    int result = await databaseHelper.deleteNote(note.id);
-    if (result != 0) {
-      _showSnackBar(context, 'Note Deleted Successfully');
-      updateListView();
-    }
-  }
+//  void _delete(BuildContext context, Note note) async {
+//    int result = await databaseHelper.deleteNote(note.id);
+//    if (result != 0) {
+//      _showSnackBar(context, 'Note Deleted Successfully');
+//      updateListView();
+//    }
+//  }
 
-  void _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
-    Scaffold.of(context).showSnackBar(snackBar);
-  }
+//  void _showSnackBar(BuildContext context, String message) {
+//    final snackBar = SnackBar(content: Text(message));
+//    Scaffold.of(context).showSnackBar(snackBar);
+//  }
 
   void navigateToDetail(Note note, String title) async {
     bool result =
