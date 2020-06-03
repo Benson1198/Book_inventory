@@ -130,10 +130,13 @@ class NoteDetailState extends State<NoteDetail> {
                   padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                   child: Row(
                     children: <Widget>[
+                      Container(
+                        width: 25.0,
+                      ),
                       Expanded(
                         child: RaisedButton(
                           color: Theme.of(context).primaryColorDark,
-                          textColor: Theme.of(context).primaryColorLight,
+                          textColor: Colors.white,
                           child: Text(
                             'Save',
                             textScaleFactor: 1.5,
@@ -147,27 +150,56 @@ class NoteDetailState extends State<NoteDetail> {
                         ),
                       ),
                       Container(
-                        width: 5.0,
+                        width: 25.0,
                       ),
-                      Expanded(
-                        child: RaisedButton(
-                          color: Theme.of(context).primaryColorDark,
-                          textColor: Theme.of(context).primaryColorLight,
-                          child: Text(
-                            'Delete',
-                            textScaleFactor: 1.5,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              debugPrint("Delete button clicked");
-                              _delete();
-                            });
-                          },
-                        ),
-                      ),
+//                      Expanded(
+//                        child: RaisedButton(
+//                          color: Theme.of(context).primaryColorDark,
+//                          textColor: Theme.of(context).primaryColorLight,
+//                          child: Text(
+//                            'Delete',
+//                            textScaleFactor: 1.5,
+//                          ),
+//                          onPressed: () {
+//                            setState(() {
+//                              debugPrint("Delete button clicked");
+//                              _delete();
+//                            });
+//                          },
+//                        ),
+//                      ),
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 130,
+                    ),
+                    Expanded(
+                      child: RaisedButton(
+                        color: Colors.red[900],
+                        textColor: Colors.white,
+                        child: Text(
+                          'Delete',
+                          textScaleFactor: 1.5,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            debugPrint("Delete button clicked");
+                            _delete();
+                          });
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 130,
+                    )
+                  ],
+                )
               ],
             ),
           ),

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/note_list.dart';
-import 'package:flutter_app/screens/note_detail.dart';
 import 'package:flutter_app/screens/home_page.dart';
 
 void main() {
